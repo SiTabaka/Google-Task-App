@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Task List{% endblock %}
+{% block body %}
+	<h1>Google Task App</h1>
+	<div id="formStatus">
+		Choose a task list :
+	</div>
+	<ul id="contentList">
+		{% for list in lists %}
+			<li>
+				<a href="{{ path('index_task',{"id" : list.id}) }}">{{ list.name }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<footer>
+		&copy; TABAKA-LEDUC 2015
+	</footer>
+{% endblock %}

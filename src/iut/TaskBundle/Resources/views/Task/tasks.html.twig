@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block title %}Task List{% endblock %}
+{% block body %}
+	<h1>{{ title }}</h1>
+	<div id="idList">
+		{{ idList }}
+	</div>
+	<form id="formStatus" action="" method="post" {{ form_enctype(taskForm) }}>
+		{{ form_errors(taskForm) }}
+
+		{{ form_row(taskForm.name) }}
+
+		{{ form_row(taskForm.description) }}
+
+		{{ form_rest(taskForm) }}
+
+		<input class="navigation" type="submit" value="Create"/>
+	</form>
+	<ul id="contentList">
+		{% for task in tasks %}
+			<li>
+				<input type="checkbox" name="chech{{ task.id }}" value="{{ task.id }}" {% if task.check == 'completed' %}checked{% endif %}><strong>{{ task.name }}</strong> : {{ task.description }} <a id="supprimer" href="{{path('index_list_remove_task',{"idTask" : task.id, "idList" : task.listTask.id}) }}"><img src="/sf2/web/css/ic_delete_black_24px.svg"/></a>
+			</li>
+		{% endfor %}
+	</ul>
+	<footer>
+		<a class="navigation" href="{{ path('index_list') }}">Return</a>
+	</footer>
+{% endblock %}
+{% block script %}
+	<script type="text/javascript">			  
+		$("input[type=checkbox]").click(function(){
+			var idT = $(this).val();
+			var idL = $("#idList").html();
+			if($(this).is(':checked'))
+			{
+				var task_check = "completed";
+			}
+			else
+			{
+				var task_check = "needsAction";
+			}
+			jQuery.ajax({
+				type : 'POST',
+				url: '{{ path('index_update_task_ajax') }}',
+				data: {idTask : idT, idList : idL, check : task_check},
+				success: function (data) {
+				},
+				error:   function(request, textStatus, errorThrown){
+					alert('An error has occured with Google Task. Please contact us.');
+				}
+			});
+		});
+	</script>
+{% endblock %}

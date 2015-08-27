@@ -1,0 +1,9 @@
+iut_dumb_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: iutDumbBundle:Default:index }
+iut_dumb_addition:
+    path:    /dumb/addition/{x}/{y}
+    defaults: { _controller: iutDumbBundle:Default:addition, x:1, y:2 }
+    requirements:
+        x: \d+
+        y: \d+

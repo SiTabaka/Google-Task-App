@@ -1,0 +1,21 @@
+index_list:
+    path:    /
+    defaults: { _controller: iutTaskBundle:Task:index }
+
+index_oauth:
+    path: /oauth2callback
+    defaults: { _controller: iutTaskBundle:Task:oauth }
+
+index_list_remove_task:
+    path: /remove/{idTask}/{idList}
+    defaults: { _controller: iutTaskBundle:Task:delete }
+
+index_update_task_ajax:
+    path: /check_task_ajax
+    defaults: { _controller: iutTaskBundle:Task:checkTaskAjax }
+    requirements:
+        _method:  POST
+
+index_task:
+    path: /{id}
+    defaults: { _controller: iutTaskBundle:Task:task }

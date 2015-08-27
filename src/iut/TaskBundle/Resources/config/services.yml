@@ -1,0 +1,6 @@
+services:
+#    iut_task.example:
+#        class: iut\TaskBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    iut_task.google:
+        class: iut\TaskBundle\Google

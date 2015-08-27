@@ -1,0 +1,9 @@
+iut_task:
+    resource: "@iutTaskBundle/Resources/config/routing.yml"
+    prefix:   /
+
+iut_dumb:
+    resource: "@iutDumbBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
